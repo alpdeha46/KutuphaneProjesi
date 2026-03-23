@@ -1,0 +1,101 @@
+@model IEnumerable<KutuphaneProjesi.Models.OduncIslem>
+
+<div class="container mt-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2 class="fw-bold text-primary">
+            <i class="fa-solid fa-right-left me-2"></i>Ödünç İşlemleri
+        </h2>
+        <a asp-action="Create" class="btn btn-primary fw-bold shadow-sm">
+            <i class="fa-solid fa-plus me-1"></i> Yeni Ödünç Ver
+        </a>
+    </div>
+
+    <div class="card shadow-sm border-0 mb-4 bg-light">
+        <div class="card-body">
+            <form asp-action="Index" method="get" class="row g-2">
+                <div class="col-md-10">
+                    <div class="input-group">
+                        <span class="input-group-text bg-white border-end-0">
+                            <i class="fa-solid fa-magnifying-glass text-muted"></i>
+                        </span>
+                        <input type="text" name="searchString" class="form-control border-start-0" 
+                               placeholder="Kitap adı, öğrenci adı veya okul no ile hızlıca ara..." 
+                               value="@ViewData["CurrentFilter"]">
+                    </div>
+                </div>
+                <div class="col-md-2 d-grid">
+                    <button type="submit" class="btn btn-dark fw-bold">Filtrele</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    @if (TempData["Mesaj"] != null) { <div class="alert alert-success shadow-sm">@TempData["Mesaj"]</div> }
+    @if (TempData["Hata"] != null) { <div class="alert alert-danger shadow-sm">@TempData["Hata"]</div> }
+
+    <div class="table-responsive shadow-sm rounded">
+        <table class="table table-hover bg-white mb-0 align-middle">
+            <thead class="table-dark">
+                <tr>
+                    <th>Öğrenci Bilgisi</th>
+                    <th>Kitap / Yazar</th>
+                    <th>Veriliş</th>
+                    <th>Teslim</th>
+                    <th class="text-center">Durum</th>
+                    <th class="text-center">İşlem</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            <div class="fw-bold">@item.Ogrenci?.Ad @item.Ogrenci?.Soyad</div>
+                            <small class="text-muted">No: @item.Ogrenci?.OkulNo</small>
+                        </td>
+                        <td>
+                            <div class="fw-bold text-truncate" style="max-width: 200px;">@item.Kitap?.Ad</div>
+                            <small class="text-secondary">@item.Kitap?.Yazar</small>
+                        </td>
+                        <td>@item.VerilisTarihi.ToString("dd.MM.yyyy")</td>
+                        <td>@(item.TeslimTarihi?.ToString("dd.MM.yyyy") ?? "-")</td>
+                        <td class="text-center">
+                            @if (item.TeslimTarihi == null)
+                            {
+                                <span class="badge rounded-pill bg-warning text-dark border shadow-sm px-3">Öğrencide</span>
+                            }
+                            else
+                            {
+                                <span class="badge rounded-pill bg-success shadow-sm px-3">Teslim Alındı</span>
+                            }
+                        </td>
+                        <td class="text-center">
+                            @if (item.TeslimTarihi == null)
+                            {
+                                <form asp-action="TeslimAl" asp-route-id="@item.Id" method="post" 
+                                      onsubmit="return confirm('Kitap kütüphaneye geri döndü mü?');">
+                                    <button type="submit" class="btn btn-sm btn-outline-success fw-bold px-3">
+                                        <i class="fa-solid fa-arrow-rotate-left me-1"></i> Teslim Al
+                                    </button>
+                                </form>
+                            }
+                            else
+                            {
+                                <i class="fa-solid fa-check-double text-success"></i>
+                            }
+                        </td>
+                    </tr>
+                }
+                @if (!Model.Any())
+                {
+                    <tr>
+                        <td colspan="6" class="text-center py-5 text-muted">
+                            <i class="fa-regular fa-face-frown fa-2x mb-2 d-block"></i>
+                            Aranan kriterlere uygun bir ödünç kaydı bulunamadı.
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

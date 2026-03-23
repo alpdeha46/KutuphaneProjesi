@@ -1,0 +1,44 @@
+@model KutuphaneProjesi.Models.Ogrenci
+
+<div class="row justify-content-center mt-4">
+    <div class="col-md-6">
+        <div class="card shadow-lg border-0">
+            <div class="card-header bg-primary text-white text-center">
+                <h4 class="mb-0">Yeni Öğrenci Kaydı</h4>
+            </div>
+            <div class="card-body p-4">
+                <form asp-action="Create" method="post">
+                    <div class="mb-3">
+                        <label class="form-label fw-bold">Ad</label>
+                        <input asp-for="Ad" class="form-control" placeholder="Öğrencinin Adı" required />
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label fw-bold">Soyad</label>
+                        <input asp-for="Soyad" class="form-control" placeholder="Öğrencinin Soyadı" required />
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label fw-bold">Okul Numarası</label>
+                        <input asp-for="OkulNo" class="form-control" placeholder="Örn: 1234" required />
+                    </div>
+
+                    <div class="mb-4">
+                        <label class="form-label fw-bold text-danger">Sınıf Seçimi</label>
+                        <select asp-for="SinifId" class="form-select border-primary" asp-items="ViewBag.SinifId">
+                            <option value="">-- Lütfen Sınıf Seçiniz --</option>
+                        </select>
+                        <div class="form-text text-muted small mt-1">
+                            Eğer sınıf görünmüyorsa önce "Sınıflar" panelinden ekleme yapın.
+                        </div>
+                    </div>
+
+                    <div class="d-grid gap-2">
+                        <button type="submit" class="btn btn-primary btn-lg fw-bold">KAYDET</button>
+                        <a asp-action="Index" class="btn btn-outline-secondary">Listeye Dön</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

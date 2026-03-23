@@ -1,0 +1,50 @@
+﻿<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Okul Kütüphanesi</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <style>
+        body { background-color: #f8f9fa; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        .navbar { box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); }
+        .card { border: none; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.08); }
+        .btn { border-radius: 8px; }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-success mb-4">
+        <div class="container">
+            <a class="navbar-brand fw-bold" asp-area="" asp-controller="Home" asp-action="Index">
+                <i class="fa-solid fa-book-open-reader me-2"></i>Okul Kütüphanesi
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" asp-controller="Home" asp-action="Index">Ana Sayfa</a></li>
+                    <li class="nav-item"><a class="nav-link" asp-controller="Istatistik" asp-action="Index">İstatistikler</a></li>
+                    <li class="nav-item"><a class="nav-link" asp-controller="Kitaplar" asp-action="Index">Kitaplar</a></li>
+                    <li class="nav-item"><a class="nav-link" asp-controller="Kategoriler" asp-action="Index">Kategoriler</a></li>
+                    <li class="nav-item"><a class="nav-link" asp-controller="Siniflar" asp-action="Index">Sınıflar</a></li>
+                    <li class="nav-item"><a class="nav-link" asp-controller="Ogrenciler" asp-action="Index">Öğrenciler</a></li>
+                    <li class="nav-item"><a class="nav-link btn btn-warning text-dark fw-bold px-3 ms-2" asp-controller="Odunc" asp-action="Index">
+                        <i class="fa-solid fa-hand-holding-hand me-1"></i> Ödünç İşlemleri
+                    </a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

@@ -1,0 +1,56 @@
+@model KutuphaneProjesi.Models.Kitap
+
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow border-0">
+                <div class="card-header bg-success text-white">
+                    <h4 class="mb-0"><i class="fa-solid fa-book-medical me-2"></i>Yeni Kitap Ekle</h4>
+                </div>
+                <div class="card-body p-4">
+                    <form asp-action="Create" method="post">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                        <div class="mb-3">
+                            <label asp-for="Ad" class="form-label fw-bold">Kitap Adı</label>
+                            <input asp-for="Ad" class="form-control" placeholder="Örn: Nutuk" required />
+                            <span asp-validation-for="Ad" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="Yazar" class="form-label fw-bold">Yazar</label>
+                            <input asp-for="Yazar" class="form-control" placeholder="Örn: Mustafa Kemal Atatürk" />
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="KategoriId" class="form-label fw-bold">Kategori</label>
+                            <select asp-for="KategoriId" class="form-select" asp-items="ViewBag.KategoriId">
+                                <option value="">-- Kategori Seçin --</option>
+                            </select>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label asp-for="SayfaSayisi" class="form-label fw-bold">Sayfa Sayısı</label>
+                                <input asp-for="SayfaSayisi" type="number" class="form-control" />
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label asp-for="StokAdedi" class="form-label fw-bold">Stok Sayısı</label>
+                                <input asp-for="StokAdedi" type="number" class="form-control" required />
+                                <span asp-validation-for="StokAdedi" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <hr />
+                        <div class="d-grid gap-2">
+                            <button type="submit" class="btn btn-success fw-bold shadow-sm">
+                                <i class="fa-solid fa-save me-1"></i> Kaydet
+                            </button>
+                            <a asp-action="Index" class="btn btn-outline-secondary">İptal</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
