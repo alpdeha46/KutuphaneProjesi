@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "/home/alp151/Masaüstü/MVC/KutuphaneProjesi/KutuphaneProjesi.csproj": {}
+    "C:\\Users\\suyad\\Desktop\\Ders\\MVC\\KutuphaneProjesi\\KutuphaneProjesi.csproj": {}
   },
   "projects": {
-    "/home/alp151/Masaüstü/MVC/KutuphaneProjesi/KutuphaneProjesi.csproj": {
+    "C:\\Users\\suyad\\Desktop\\Ders\\MVC\\KutuphaneProjesi\\KutuphaneProjesi.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/alp151/Masaüstü/MVC/KutuphaneProjesi/KutuphaneProjesi.csproj",
+        "projectUniqueName": "C:\\Users\\suyad\\Desktop\\Ders\\MVC\\KutuphaneProjesi\\KutuphaneProjesi.csproj",
         "projectName": "KutuphaneProjesi",
-        "projectPath": "/home/alp151/Masaüstü/MVC/KutuphaneProjesi/KutuphaneProjesi.csproj",
-        "packagesPath": "/home/alp151/.nuget/packages/",
-        "outputPath": "/home/alp151/Masaüstü/MVC/KutuphaneProjesi/obj/",
+        "projectPath": "C:\\Users\\suyad\\Desktop\\Ders\\MVC\\KutuphaneProjesi\\KutuphaneProjesi.csproj",
+        "packagesPath": "C:\\Users\\suyad\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\suyad\\Desktop\\Ders\\MVC\\KutuphaneProjesi\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/home/alp151/.nuget/NuGet/NuGet.Config"
+          "C:\\Users\\suyad\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net9.0"
@@ -84,7 +84,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/9.0.311/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.311/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

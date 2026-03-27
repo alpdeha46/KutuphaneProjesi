@@ -1,51 +1,61 @@
 @model IEnumerable<KutuphaneProjesi.Models.Kategori>
 
-<div class="d-flex justify-content-between align-items-center mb-4">
-    <h2 class="text-primary"><i class="fa-solid fa-tags me-2"></i>Kategori Yönetimi</h2>
-    <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#addModal">
-        <i class="fa-solid fa-plus me-1"></i> Yeni Kategori
-    </button>
-</div>
+@{
+    ViewData["Title"] = "Kategoriler";
+}
 
-<div class="card shadow-sm">
-    <div class="card-body">
-        <table class="table table-hover">
-            <thead class="table-light">
-                <tr>
-                    <th>Kategori Adı</th>
-                    <th class="text-end">İşlemler</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var item in Model)
-                {
-                    <tr>
-                        <td class="fw-bold">@item.Ad</td>
-                        <td class="text-end">
-                            <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-outline-danger btn-sm"
-                                   onclick="return confirm('Silmek istediğinize emin misiniz?')">
-                                <i class="fa-solid fa-trash"></i>
-                            </a>
-                        </td>
-                    </tr>
-                }
-            </tbody>
-        </table>
-    </div>
-</div>
+<h2>Kategoriler</h2>
 
-<div class="modal fade" id="addModal" tabindex="-1">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <form asp-action="Create" asp-controller="Kategoriler" method="post">
-                @Html.AntiForgeryToken() <div class="modal-body">
-                <label class="form-label">Kategori Adı</label>
-                <input name="Ad" class="form-control" placeholder="Örn: Roman" required />
-            </div>
-            <div class="modal-footer">
-                <button type="submit" class="btn btn-primary w-100">Kaydet</button>
-            </div>
-        </form>
+@if (TempData["Mesaj"] != null)
+{
+    <div class="alert alert-success">@TempData["Mesaj"]</div>
+}
+
+@if (TempData["Hata"] != null)
+{
+    <div class="alert alert-danger">@TempData["Hata"]</div>
+}
+
+<form asp-action="Create" method="post" class="mb-4">
+    @Html.AntiForgeryToken()
+
+    <div class="row">
+        <div class="col-md-6">
+            <input name="Ad" class="form-control" placeholder="Kategori adı girin" />
+        </div>
+        <div class="col-md-3">
+            <button type="submit" class="btn btn-success">Kategori Ekle</button>
+        </div>
     </div>
-</div>
-</div>
+</form>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Kategori Adı</th>
+            <th>Kitap Sayısı</th>
+            <th>İşlem</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var kategori in Model)
+        {
+            <tr>
+                <td>@kategori.Id</td>
+                <td>@kategori.Ad</td>
+                <td>@(kategori.Kitaplar?.Count ?? 0)</td>
+                <td>
+                    <form asp-action="Delete" method="post" style="display:inline;">
+                        @Html.AntiForgeryToken()
+                        <input type="hidden" name="id" value="@kategori.Id" />
+                        <button type="submit" class="btn btn-danger btn-sm"
+                                onclick="return confirm('Bu kategoriyi silmek istiyor musun?')">
+                            Sil
+                        </button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
